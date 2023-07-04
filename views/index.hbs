@@ -1,0 +1,46 @@
+    <!--PRODUCTOS-->
+  
+    <section id="productos">
+      <h2 class="text-center mt-5">Encuentra tu estilo acá</h2>
+      
+      <div class="row">
+        {{#each products}}
+        <div class="col-12 col-md-6 col-lg-4 my-2">
+                <div class="card m-auto my-3" style="width: 18rem;">
+                    <img src="{{imagen}}" class="card-img-top" alt="{{nombre}}">
+                    <div class="card-body">
+                    <h5 class="card-title">{{nombre}}</h5>
+                    <p class="card-text">{{descripcion}}</p>
+                    <p class="card-text">Precio: $ {{precio}}</p>
+                    <p class="card-text text-success">Descuento: - $ {{descuento}}</p>
+                    {{#aplicarDescuento precio descuento}}
+                    <p class="card-text text-warning">Precio final: $ {{{descuentoAplicado}}}</p>
+                    {{/aplicarDescuento}}
+                    {{#if_cond stock sku}}
+                      <p class="card-text text-success">Cantidad Disponible: {{stock}}</p>
+                      <div class="d-flex justify-content-between align-items-center">
+                      <a href="" class="btn btn-outline-success" data-sku="{{sku}}" onclick="addToCart({{sku}})">Comprar</a>
+                    {{else}} 
+                      <div>
+                       <p class="card-text">Unidades agotadas</p>
+                       <h4 class="card-text text-danger">No disponible </h4>
+                    {{/if_cond}}
+                  </div>
+              </div>
+            </div>
+         </div>
+         {{/each}}
+
+      </div>
+    </section>
+
+<script src="/js/index.js"></script>
+
+  
+
+
+
+
+
+
+
