@@ -31,9 +31,11 @@ function revisarDisponibilidad(products){
     })
     return productosCarro  
 } 
- 
+
+var host = window.location.protocol + "//" + window.location.host;
+
 async function getProducts(){
-  return fetch("http://localhost:3000/api/apiProductos")
+  return fetch(host+"/api/productos")
   .then(response => { return response.json()})
   .then(data => {return products=data});
   } 
@@ -211,14 +213,14 @@ document.getElementById("boton-pagar").addEventListener("click", function (event
               'success'
             )
             .then(()=>{
-              return fetch("http://localhost:3000/cart/compraYDetalle", {
+              return fetch(host+"/api/compraEcommerce/compraYDetalle", {
                 method: 'POST', 
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(productosCarro)   
                 })})
               .then(()=>{
                 localStorage.clear()
-               setTimeout(function(){location.href="http://localhost:3000/"} , 4000);
+               setTimeout(function(){location.href=host} , 4000);
               })
           }
         })
